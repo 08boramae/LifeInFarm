@@ -1,13 +1,13 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Form
+from typing import Annotated
+from model import models
+from database import handle_database
+from router import timeline
 
 app = FastAPI()
 
+@app.route('/')
+def index():
+    return {"status":"up"}
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
-
-
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
+app.include_router(timeline.router)
