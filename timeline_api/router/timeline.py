@@ -1,10 +1,13 @@
 from fastapi import APIRouter
+from database import handle_database2
+from model import model
+from typing import Annotated
 
 router = APIRouter()
 
 @router.get('/timeline')
 async def get_timeline():
-    # TODO
+    res = database.get_timeline_list()
     return 0
 
 @router.get('/timelines')
