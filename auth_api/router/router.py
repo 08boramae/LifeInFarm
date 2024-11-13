@@ -1,11 +1,16 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Form
+from database.handle_database import *
+from model.model import *
+from typing import Annotated
 
 router = APIRouter()
 
 @router.post('/login')
-async def login():
-    # TODO
-    return 0
+async def login(data: Annotated[LoginRequest, Form()]):
+    if login(data.id, data.password):
+        return {"status": "success"}
+    else:
+        return {"status": "fail"}
 
 @router.post('/register')
 async def register():
