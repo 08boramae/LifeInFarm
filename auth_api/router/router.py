@@ -4,13 +4,14 @@ from database.handle_database import *
 from datetime import datetime, timedelta, timezone
 from model.model import *
 import jwt
+import os
 from typing import Annotated
 
 router = APIRouter()
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
-SECRET_KEY = "verysecret"
+SECRET_KEY = os.urandom(32)
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 

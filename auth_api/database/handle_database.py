@@ -14,10 +14,13 @@ def init():
     conn.commit()
 
 def login(id, pw):
-    cur = conn.cursor()
-    cur.execute("SELECT uid, id, name FROM user WHERE id = ? AND pw = ?", (id, pw))
-    res = cur.fetchone()
-    return res
+    try:
+        cur = conn.cursor()
+        cur.execute("SELECT uid, id, name FROM user WHERE id = ? AND pw = ?", (id, pw))
+        res = cur.fetchone()
+        return res
+    except:
+        return None
 
 def add_user(id, name, pw, location):
     try:
